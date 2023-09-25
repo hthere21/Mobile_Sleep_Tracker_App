@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar color="secondary"> 
+    <h1>LOG SLEEPINESS</h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div><h6 style="text-align: center">Enter Sleepiness</h6></div>
+      <ion-list>
+        <ion-label>Degree of Sleepiness</ion-label>
+        <ion-select value="brown" okText="Okay" cancelText="Dismiss" [(ngModel)]="degree" placeholder="Select"> 
+          <ion-select-option value="1">1 Feeling active, vital, alert, or wide awake</ion-select-option>
+          <ion-select-option value="2">2 Functioning at high levels, but not at peak; able to concentrate</ion-select-option>
+          <ion-select-option value="3">3 Awake, but relaxed; responsive but not fully alert</ion-select-option>
+          <ion-select-option value="4">4 Somewhat foggy, let down</ion-select-option>
+          <ion-select-option value="5">5 Foggy; losing interest in remaining awake; slowed down</ion-select-option>
+          <ion-select-option value="6">6 Sleepy, woozy, fighting sleep; prefer to lie down</ion-select-option>
+          <ion-select-option value="7">7 No longer fighting sleep, sleep onset soon; having dream-like thoughts</ion-select-option>
+        </ion-select> 
+      </ion-list>
+
+      <ion-item>
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-datetime-button
+          slot="end"
+          datetime="datetime3"
+          size="small"
+          class="my-label"
+        ></ion-datetime-button>
+      </ion-item>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime
+          [(ngModel)]="dateTimeString"
+          id="datetime3"
+          presentation="date-time"   
+          locale="en-US"  
+          hourCycle="h23"
+          [showDefaultButtons]="true"
+          [preferWheel]="true"  
+          size="cover"
+          ></ion-datetime>
+        </ng-template>
+      </ion-modal>
+      
+    <!--ADD BUTTON-->
+    <ion-row center>  
+      <ion-col text-center>   
+    <ion-button shape="round" expand="block" (click)="addEntryClicked()" color="secondary">
+      ADD DATA
+      <ion-icon slot="end" name="add-circle"></ion-icon>
+    </ion-button>
+  </ion-col> 
+  </ion-row>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Recent Sleepiness</ion-label>
+    </ion-item>
+  </ion-list>
+  <!---->
+    <ion-card>
+      <ion-item>
+        <ion-label> Date: {{ (recentSleepinessData?.loggedAt).toLocaleString() }}</ion-label>
+      </ion-item>
+      <ion-card-content>{{recentSleepinessData?.summaryString()}}</ion-card-content>
+    </ion-card>
+
+
+</ion-content>

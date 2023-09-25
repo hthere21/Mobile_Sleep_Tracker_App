@@ -1,0 +1,84 @@
+<ion-header class="ion-no-border" >
+  <ion-toolbar color="secondary">
+    <h1>SLEEP TRACKER</h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!--HEADER-->
+  
+    <div>
+      <h3 style="text-align: center">How was your sleep</h3>
+    </div>
+
+    <ion-item>
+
+      <ion-label class="my-label">Sleep Starts:</ion-label>
+      <ion-datetime-button
+        datetime="datetime"
+        size="small"
+        class="my-label"
+      ></ion-datetime-button>
+    </ion-item>
+  
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime
+      [(ngModel)]="startDateTimeString"
+      id="datetime"
+      presentation="date-time"   
+      locale="en-GB"
+      [showDefaultButtons]="true"
+      [preferWheel]="true"  
+      size="cover"
+      ></ion-datetime>
+    </ng-template>
+  </ion-modal>
+   
+    <ion-item>  
+      <ion-label class="my-label">Sleep Ends:</ion-label>
+      <ion-datetime-button
+        datetime="datetime1"
+        size="small"
+        class="my-label"
+      ></ion-datetime-button>
+    </ion-item>
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime
+        [(ngModel)]="endDateTimeString"
+        id="datetime1"
+        presentation="date-time"   
+        locale="en-GB" 
+        [showDefaultButtons]="true"
+        [preferWheel]="true"  
+        size="cover"
+      ></ion-datetime>
+    </ng-template>
+  </ion-modal>
+
+  <p></p>
+  
+  <ion-row center>  
+    <ion-col text-center>   
+  <ion-button shape="round" expand="block" (click)="addEntryClicked()" color="secondary">
+    ADD SLEEP
+    <ion-icon slot="end" name="add-circle"></ion-icon>
+  </ion-button>
+</ion-col> 
+</ion-row>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Recent Sleep</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ (recentOvernightSleepData)?.dateString() }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>{{ recentOvernightSleepData?.summaryString() }}<br>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

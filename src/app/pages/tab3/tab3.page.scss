@@ -1,0 +1,28 @@
+ion-content {
+    --padding-top: 2rem;
+  --padding-start: 0.5rem;
+  --padding-end: 0.5rem;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+  .h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #8c8c8c;
+    margin: 0;
+    align-content: justify;
+    margin:10px 0px 10px;
+  }
+  }
+}
+
+ion-button {
+    margin-right: 1rem;
+    float: right;
+}

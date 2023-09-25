@@ -1,0 +1,39 @@
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-segment (ionChange)="segmentChanged($event)" value="sleepData" color="secondary">
+      <ion-segment-button value="sleepData">
+          <ion-label>Sleep Data</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="sleepinessData">
+          <ion-label>Sleepiness Data</ion-label>
+        </ion-segment-button>
+  </ion-segment>
+
+  <!-- Overnight Sleep Data-->
+  <div *ngIf="showSleepDataCards" >
+    <ion-card *ngFor="let overnightSleepData1 of overnightSleepDataArray2" ([overnightSleepData1])="overnightSleepData1">
+      <ion-card-header>
+        <ion-card-title>{{overnightSleepData1?.dateString()}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>{{overnightSleepData1?.summaryString()}}<br>
+
+      </ion-card-content>
+      <ion-progress-bar [value]=overnightSleepData1.getSleepPercentage() [color]=overnightSleepData1.getProgressBarColor()></ion-progress-bar>
+    </ion-card>
+    
+  </div>
+
+
+  <!-- Sleepiness Data-->
+  <div  *ngIf="showSleepinessDataCards">
+    <ion-card *ngFor="let sleepinessData of sleepinessDataArray">
+      <ion-item>
+        <ion-label>Date: {{(sleepinessData?.loggedAt).toLocaleString()}}</ion-label>
+      </ion-item>
+      <ion-card-content>{{sleepinessData?.summaryString()}}</ion-card-content>
+    </ion-card>
+  </div>
+  
+</ion-content>
